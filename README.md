@@ -10,6 +10,8 @@ As an administrator, I must be able to
    - Pagination
    - Search functionality of currentpage’s content by Name (picked)
 
+[LIVE DEMO](https://user-list-take-home.vercel.app/)
+
 ## Getting Started
 First, run the development server:
 
