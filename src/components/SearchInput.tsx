@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect } from 'react'
+import { KeyboardEvent, useCallback, useEffect } from 'react'
 import { Container, Box, Paper, InputBase, IconButton, FormHelperText, Typography } from '@mui/material'
 
 import { z } from 'zod'
@@ -49,13 +49,27 @@ const SearchInput = ({ defaultValue = '', onChange }: SearchInputProps) => {
     handleSubmit(onSubmit)()
   }, [])
 
+  const onEnterKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSubmit(onSubmit)()
+    }
+  }
+
   useEffect(() => {
     resetField('searchInput', { defaultValue })
   }, [defaultValue])
 
   return (
     <Container maxWidth="tablet">
-      <Box display="flex" justifyContent="center" alignItems="center" width="100%" flexDirection="column" py={8}>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        width="100%"
+        flexDirection="column"
+        py={8}
+        onKeyDown={onEnterKeyDownHandler}
+      >
         <Paper
           component="form"
           sx={{ px: 1, py: 2, display: 'flex', alignItems: 'center', width: '100%' }}
