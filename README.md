@@ -28,7 +28,7 @@ pnpm dev
 bun dev
 ```
 
-Open [httsp://localhost:3000](https://localhost:3000) with your browser to see the result.The page auto-updates as you edit the file.
+Open [https://localhost:3000](https://localhost:3000) with your browser to see the result.The page auto-updates as you edit the file.
 
 ## The Structure
 - app
