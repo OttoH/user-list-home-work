@@ -34,7 +34,7 @@ export default async function Home() {
     >
       <Container maxWidth="laptop">
         <Box display="flex" justifyContent="center" alignItems="center" width="100%" py={8}>
-          <UserListTable initPage={info.page} initResults={info.rowsPerPage} initData={users} />
+          <UserListTable initPage={info.page} initRowsPerPage={info.rowsPerPage} initData={users} />
         </Box>
       </Container>
     </Box>
