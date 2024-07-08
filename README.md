@@ -1,6 +1,9 @@
 # User List (take home)
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+![screenshot](https://github.com/OttoH/user-list-home-work/blob/main/images/sh1.png?raw=true)
+![search by name](https://github.com/OttoH/user-list-home-work/blob/main/images/search.png?raw=true)
+
 ## Requirements
 As an administrator, I must be able to
 1. view a list of users and relevant details
