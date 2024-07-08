@@ -43,7 +43,7 @@ import EmptyTableRow from './EmptyTableRow'
 
 interface UserListTable {
   initPage?: number
-  initResults?: number
+  initRowsPerPage?: number
   initData?: any
   initSearchName?: string
 }
@@ -89,19 +89,10 @@ const columns: readonly UserColumn[] = [
   },
 ]
 
-interface Data {
-  name: string
-  code: string
-  population: number
-  size: number
-  density: number
-}
-
 const UserListTable = (props?: UserListTable) => {
-  const { initPage = 0, initResults = 10, initData = [], initSearchName } = props || {}
+  const { initPage = 0, initRowsPerPage = 10, initData = [], initSearchName } = props || {}
   const [users, setUsers] = useState(initData)
   const [page, setPage] = useState(initPage)
-  const [rowsPerPage, setRowsPerPage] = useState(initResults)
 
   const [searchName, setSearchName] = useState(initSearchName)
   const pageCursorRef = useRef<number>(initPage)
@@ -115,7 +106,7 @@ const UserListTable = (props?: UserListTable) => {
   // The new user pagination data will be appended manually later.
   const { data: paginatedData, isFetching } = useQuery({
     queryKey: ['results', page],
-    queryFn: () => fetchUsers(page, rowsPerPage),
+    queryFn: () => fetchUsers(page, initRowsPerPage),
     placeholderData: keepPreviousData,
     enabled: page > pageCursorRef.current,
   })
@@ -199,13 +190,13 @@ const UserListTable = (props?: UserListTable) => {
   }, [searchName])
 
   const emptyRows = useMemo(() => {
-    const rowNumbers = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - users.length) : 0
+    const rowNumbers = page > 0 ? Math.max(0, (1 + page) * initRowsPerPage - users.length) : 0
     return <EmptyTableRow count={rowNumbers} columnCount={5} />
-  }, [users, page, rowsPerPage])
+  }, [users, page, initRowsPerPage])
 
   const visibleRows = useMemo(
-    () => users.sort(getComparator(regOrder, 'regAt')).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-    [users, regOrder, page, rowsPerPage]
+    () => users.sort(getComparator(regOrder, 'regAt')).slice(page * initRowsPerPage, page * initRowsPerPage + initRowsPerPage),
+    [users, regOrder, page, initRowsPerPage]
   )
 
   return (
@@ -256,8 +247,8 @@ const UserListTable = (props?: UserListTable) => {
         <TablePagination
           rowsPerPageOptions={[10]}
           component="div"
-          count={Infinity}
-          rowsPerPage={rowsPerPage}
+          count={Infinity} // seems API can generate as Infinity
+          rowsPerPage={initRowsPerPage}
           page={page}
           onPageChange={handleChangePage}
           disabled={isFetching}

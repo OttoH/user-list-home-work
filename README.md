@@ -99,17 +99,14 @@ I create a data attrubute with the name data to each table row. By operate the d
   useEffect(() => {
     if (searchName) {
       document.querySelectorAll('tr[data-search]').forEach((node) => {
-        // @ts-ignore
         node.style.opacity = '0.1'
       })
 
       document.querySelectorAll(`tr[data-search*="${searchName}" i]`).forEach((node) => {
-        // @ts-ignore
         node.style.opacity = '1'
       })
     } else {
       document.querySelectorAll('tr[data-search]').forEach((node) => {
-        // @ts-ignore
         node.style.opacity = '1'
       })
     }
