@@ -9,9 +9,9 @@ As an administrator, I must be able to
 1. view a list of users and relevant details
 2. enable and disable users (users are by default enabled)
 3. implement at least one feature mentioned below
-   - Sorting on the RegisteredAt column
-   - Pagination
-   - Search functionality of currentpage’s content by Name (picked)
+   - ✅ Sorting on the RegisteredAt column
+   - ✅ Pagination
+   - ✅ Search functionality of currentpage’s content by Name (picked)
 
 [LIVE DEMO](https://user-list-take-home.vercel.app/)
 
